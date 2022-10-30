@@ -12,7 +12,13 @@ int main() {
   }
   else
   {
-    if (a == b) printf("a = b");
-    else printf("a is less that b");
+    if (a == b)
+    {
+      printf("a = b");
+    }
+    else
+    {
+      printf("a is less that b");
+    }
   }
 }
