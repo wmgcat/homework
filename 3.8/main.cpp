@@ -12,7 +12,6 @@ int main() {
   float middle = 0;
   
   for (int i = 0; i < count; i++) {
-    int num;
     while(true) {
       printf("enter %i number: ", i);
       scanf("%i", &nums[i]);
