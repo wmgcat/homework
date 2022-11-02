@@ -10,14 +10,10 @@ int main() {
   }
   int min, max;
   float middle = 0;
-  
   for (int i = 0; i < count; i++) {
     int num;
-    while(true) {
-      printf("enter %i number: ", i);
-      scanf("%i", &num);
-      if (num > 0) break;
-    }
+    printf("enter %i number: ", i);
+    scanf("%i", &num);
     if (i == 0) {
       min = num;
       max = num;
