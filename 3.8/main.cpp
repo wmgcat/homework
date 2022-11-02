@@ -8,27 +8,28 @@ int main() {
     printf("Error!");
     return 0;
   }
-  int nums[count], min, max;
+  int min, max;
   float middle = 0;
   
   for (int i = 0; i < count; i++) {
+    int num;
     while(true) {
       printf("enter %i number: ", i);
-      scanf("%i", &nums[i]);
-      if (nums[i] > 0) break;
+      scanf("%i", &num);
+      if (num > 0) break;
     }
     if (i == 0) {
-      min = nums[i];
-      max = nums[i];
+      min = num;
+      max = num;
     } else {
-      if (min > nums[i]) {
-        min = nums[i];
+      if (min > num) {
+        min = num;
       }
-      if (max < nums[i]) {
-        max = nums[i];
+      if (max < num) {
+        max = num;
       }
     }
-    middle += (float)nums[i];
+    middle += (float)num;
   }
   middle /= count;
   
