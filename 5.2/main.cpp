@@ -11,8 +11,9 @@ int main() {
     printf("Error!");
     return 0;
   }
-  int arr[cols][rows];
+  int **arr = new int*[cols];
   for (int i = 0; i < cols; i++) {
+    arr[i] = new int[rows];
     for (int j = 0; j < rows; j++) {
       printf("enter %i, %i array value: ", i + 1, j + 1);
       scanf("%i", &arr[i][j]);
