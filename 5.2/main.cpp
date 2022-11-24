@@ -27,8 +27,9 @@ int main() {
       printf("%i ", arr[i][j]);
     }
     printf("%i\n", arr[i][rows - 1]);
+    // clear subarray for memory:
+    delete[] arr[i];
   }
-
   // clear array for memory:
   delete[] arr;
 }
