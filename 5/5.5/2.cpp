@@ -26,9 +26,6 @@ int main() {
     }
     printf("%i ", arr[i]);
   }
-  // clear array for memory:
-  delete[] arr;
-
   printf("\ninvert:\n\n");
   for (int i = 0; i < sum; i++) {
     if ((i % cols) == 0) {
@@ -37,5 +34,6 @@ int main() {
     printf("%i ", subarr[i]);
   }
   // clear array for memory:
+  delete[] arr;
   delete[] subarr;
 }
