@@ -11,29 +11,44 @@ int main() {
     printf("Error!");
     return 0;
   }
-  int sum = cols * rows;
-  int *arr = new int[sum], *subarr = new int[sum];
-  for (int i = 0; i < sum; i++) {
-    printf("enter %i element: ", i + 1);
-    scanf("%i", &arr[i]);
-    subarr[(i - (i / cols) * cols) * cols + (i / cols)] = arr[i];
+  int **arr = new int*[cols];
+  for (int i = 0; i < cols; i++) {
+    arr[i] = new int[rows];
+    for (int j = 0; j < rows; j++) {
+      printf("enter %i, %i array value: ", i + 1, j + 1);
+      scanf("%i", &arr[i][j]);
+    }
   }
+  
+  // invert: 
+  /*int **subarr = new int*[rows];
+  for (int i = 0; i < rows; i++) {
+    subarr[i] = new int[cols];
+    for (int j = 0; j < cols; j++) {
+      subarr[i][j] = arr[j][i];
+    }
+  }*/
+
   // output:
   printf("output:\n\n");
-  for (int i = 0; i < sum; i++) {
-    if ((i % cols) == 0) {
-      printf("\n");
+  for (int i = 0; i < cols; i++) {
+    for (int j = 0; j < rows; j++) {
+      printf("%i ", arr[i][j]);
     }
-    printf("%i ", arr[i]);
+    printf("\n");
   }
-  printf("\ninvert:\n\n");
-  for (int i = 0; i < sum; i++) {
-    if ((i % cols) == 0) {
-      printf("\n");
+
+  printf("invert:\n\n");
+  for (int i = 0; i < rows; i++) {
+    for (int j = 0; j < cols; j++) {
+      printf("%i ", arr[j][i]);
     }
-    printf("%i ", subarr[i]);
+    printf("\n");
   }
+  
   // clear array for memory:
+  for (int i = 0; i < cols; i++) {
+    delete[] arr[i];
+  }
   delete[] arr;
-  delete[] subarr;
 }
