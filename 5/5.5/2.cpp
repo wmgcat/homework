@@ -19,15 +19,6 @@ int main() {
       scanf("%i", &arr[i][j]);
     }
   }
-  
-  // invert: 
-  /*int **subarr = new int*[rows];
-  for (int i = 0; i < rows; i++) {
-    subarr[i] = new int[cols];
-    for (int j = 0; j < cols; j++) {
-      subarr[i][j] = arr[j][i];
-    }
-  }*/
 
   // output:
   printf("output:\n\n");
@@ -37,7 +28,6 @@ int main() {
     }
     printf("\n");
   }
-
   printf("invert:\n\n");
   for (int i = 0; i < rows; i++) {
     for (int j = 0; j < cols; j++) {
