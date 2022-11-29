@@ -11,7 +11,7 @@ int main() {
     printf("Error!");
     return 0;
   }
-  int **arr = new int*[cols];
+  int **arr = new int* [cols];
   for (int i = 0; i < cols; i++) {
     arr[i] = new int[rows];
     for (int j = 0; j < rows; j++) {
@@ -28,14 +28,25 @@ int main() {
     }
     printf("\n");
   }
-  printf("invert:\n\n");
-  for (int i = 0; i < rows; i++) {
-    for (int j = 0; j < cols; j++) {
-      printf("%i ", arr[j][i]);
+
+  // invert:
+  int save;
+  for (int i = 0; i < cols; i++) {
+    for (int j = 0; j < rows; j++) {
+      save = arr[j][i];
+      arr[j][i] = arr[i][j];
+      arr[i][j] = save;
+      arr[j][i] = save;
+    }
+  }
+  printf("\ninvert:\n");
+  for (int i = 0; i < cols; i++) {
+    for (int j = 0; j < rows; j++) {
+      printf("%i ", arr[i][j]);
     }
     printf("\n");
   }
-  
+
   // clear array for memory:
   for (int i = 0; i < cols; i++) {
     delete[] arr[i];
