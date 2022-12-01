@@ -43,4 +43,10 @@ int main() {
     }
     printf("\n");
   }
+  
+  // clear:
+  for (int i = 0; i < cols; i++) {
+    delete[] arr[i];
+  }
+  delete[] arr;
 }
