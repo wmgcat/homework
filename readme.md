@@ -4,3 +4,4 @@
 3. white, for, do white
 4. array
 5. 2d array
+6. string
