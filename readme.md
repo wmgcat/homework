@@ -5,3 +5,4 @@
 4. array
 5. 2d array
 6. string
+7. functions
