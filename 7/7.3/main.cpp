@@ -2,10 +2,7 @@
 
 // function:
 int calc(int a, int b) {
-  if (a*a == b || b*b == a) {
-    return 1;
-  }
-  return 0;
+  return (int)(a*a == b || b*b == a); 
 }
 int calc(int a, int b, int c) {
   return calc(a, b) + calc(a, c) + calc(b, c);
