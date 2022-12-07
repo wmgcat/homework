@@ -1,4 +1,7 @@
 ## introduction:
+
+# C language:
+### homework:
 1. enter to programming
 2. if else
 3. white, for, do white
