@@ -9,3 +9,4 @@
 5. 2d array
 6. string
 7. functions
+8. classes
