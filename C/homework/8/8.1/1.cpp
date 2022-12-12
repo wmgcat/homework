@@ -64,15 +64,6 @@ class Student : public Person {
     int course;
 };
 
-void setStudent(Person *person) {
-  if (person->getOld() >= 18) {
-    Student *stud = new Student(person->getName(), person->getGender(), person->getOld());
-    person = stud;
-  } else {
-    printf("Error! %s is not 18 or more!\n", person->getName().c_str());
-  }
-}
-
 int main() {
   Person user1("Vasya", "male", 18, 30);
   Student user2("Anna", "female", 19, 2);
