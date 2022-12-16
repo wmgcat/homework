@@ -2,179 +2,116 @@
 #include "string.h"
 #include <iostream>
 
+
 using namespace std;
 
 class Item {
   public:
     Item() {
-      max = 1;
-      count = 0;
       id = "";
+      type = "";
+      max = 1;
     }
-    Item(string Id, int Max) {
-      id = Id;
-      max = Max;
-      count = 0;
+    Item(string _id, string _type, int _max) {
+      id = _id;
+      type = _type;
+      max = _max;
     }
-    string getId() { return id; }
-    int getCount() { return count; }
+    string getType() { return type; }
+    string getInfo() { return id + "(" + type + ")"; }
     int getMax() { return max; }
-    bool isMax() {
-      if (count >= max) return true;
-      return false;
-    }
-    int add(int Count) {
-      int sum = 0, subcount = count + Count;
-      if (subcount > max) {
-        sum = (subcount / max) * max + (subcount % max) - (max - count);
-        count = max;
-      } else {
-        count = subcount;
-      }
-      return sum;
-    }
-    string getInfo() { return id + "(x" + to_string(count) + ")"; }
   protected:
-    string id;
-  private:
-    int max, count;
+    int max;
+    string id, type;
 };
+
 class Weapon : public Item {
   public:
-    Weapon() {
+    Weapon(string _id, int _damage) {
+      id = _id;
+      type = "weapon";
+      damage = _damage;
       max = 1;
-      id = "";
-      count = 0;
-      damage = 1;
     }
-    Weapon(string Id, int Damage) {
-      id = Id;
-      damage = Damage;
-    }
-    string getInfo() {
-      return id + "(damage: " + to_string(damage) + ")";
-    }
+    string getInfo() { return id + "(" + type + " damage: " + to_string(damage) + ")"; }
   private:
-    int count, max, damage;
+    int damage;
 };
+
 class Armor : public Item {
   public:
-    Armor() {
+    Armor(string _id, int _armor) {
+      id = _id;
+      type = "armor";
+      armor = _armor;
       max = 1;
-      id = "";
-      count = 0;
-      armor = 1;
     }
-    Armor(string Id, int Armor) {
-      id = Id;
-      armor = Armor;
+    string getInfo() { return id + "(" + type + " armor: " + to_string(armor) + ")"; }
+  private:
+    int armor;
+};
+
+class Slot {
+  public:
+    Slot() {
+      type = "";
+      count = 0;
+    }
+    void add(Item *_item, int _count) {
+      item = _item; 
+      count += _count;
+      type = _item->getType();
+    }
+    void add(Armor *_item, int _count) {
+      armor = _item;
+      count += _count;
+      type = _item->getType();
+    }
+    void add(Weapon *_item, int _count) {
+      weapon = _item;
+      count += _count;
+      type = _item->getType();
     }
     string getInfo() {
-      return id + "(armor: " + to_string(armor) + ")";
-    }
-  private:
-    int count, max, armor;
-};
-
-class Inventory {
-  public:
-    Inventory(int Max) {
-      max = Max;
-      items = new Item[Max];
-      armors = new Armor[Max];
-      weapons = new Weapon[Max];
-    }
-    void add(Item item, int count) {
-      for (int i = 0; i < max; i++) {
-        string slot_id = items[i].getId();
-        if ((item.getId() == slot_id || slot_id == "") && !items[i].isMax()) {
-          if (slot_id == "") {
-            items[i] = item;
-          }
-          int result = items[i].add(count);
-          if (result > 0) {
-            if (i < (max - 1)) {
-              add(item, result);
-            } else {
-              printf("Error, inventory is full!\n");
-            }
-          }
-          break;
-        }
-      } 
-    }
-    void add(Weapon item, int count) {
-      for (int i = 0; i < max; i++) {
-        string slot_id = weapons[i].getId();
-        if ((item.getId() == slot_id || slot_id == "") && !weapons[i].isMax()) {
-          if (slot_id == "") {
-            weapons[i] = item;
-          }
-          int result = weapons[i].add(count);
-          if (result > 0) {
-            if (i < (max - 1)) {
-              add(item, result);
-            } else {
-              printf("Error, inventory is full!\n");
-            }
-          }
-          break;
-        }
-      }
-    }
-    
-    int getNoEmpty() {
-      int count = 0;
-      for (int i = 0; i < max || count >= max; i++) {
-        if (items[i].getId() != "") count++;
-        if (weapons[i].getId() != "") count++;
-        if (armors[i].getId() != "") count++;
-      }
-      return count;
-    }
-    void info() {
-      printf("inventory(%i):\n", max);
-      int count = 0;
-      while (count < max) {
-        bool is_find = false;
-        for (int i = 0; i < max; i++) {
-          if (items[i].getId() != "") {
-            printf("%i. %s max: %i\n", ++count, items[i].getInfo().c_str(), items[i].getMax());
-            is_find = true;          
-          }
-        }
-
-        if (!is_find) printf("%i. empty\n", ++count);
-        
-      }
-      /*for (int i = 0; i < max; i++) {
-        printf("%i. ", i + 1);
-        string slot_id = items[i].getId();
-        if (slot_id == "") {
-          printf("empty\n");
+      string temp = "empty";
+      int max = 0;
+      if (type == "armor") {
+        temp = armor->getInfo();
+        max = armor->getMax();
+      } else {
+        if (type == "weapon") {
+          temp = weapon->getInfo();
+          max = weapon->getMax();
         } else {
-          printf("%s max: %i\n", items[i].getInfo().c_str(), items[i].getMax());
+          if (type != "") {
+            temp = item->getInfo();
+            max = item->getMax();
+          }
         }
-      }*/
+      }
+      temp += "\tcount: " + to_string(count) + "/" + to_string(max);
+      return temp;
     }
   private:
-    int max;
-    Item *items;
-    Weapon *weapons;
-    Armor *armors;
+    string type;
+    int count;
+    Item *item;
+    Weapon *weapon;
+    Armor *armor;
 };
 
-int main() {
-  Inventory inv(10);
-  Item apple("apple", 8);
-  Item wood("wood", 16);
-  Weapon sword_wood("sword_wood", 2);
-  Weapon sword_golden("sword_golden", 5);  
-  Armor helmet_iron("helmet_iron", 3);
+int main() { 
+  const int max_size = 5;
+  Item item_wood("wood", "block", 64);
+  Weapon weapon_sword("sword", 4);
+  
+  Slot slots[max_size];
 
-  inv.add(apple, 22);
-  inv.add(wood, 17);
-  inv.add(sword_wood, 2);
-  inv.add(helmet_iron, 1);
-  inv.info();  
+  slots[0].add(&item_wood, 15);
+  slots[1].add(&weapon_sword, 1);
+
+  printf("inventory:\n");
+  for (int i = 0; i < max_size; i++) {
+    printf("%i. %s\n", i + 1, slots[i].getInfo().c_str());
+  }
 }
