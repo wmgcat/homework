@@ -104,11 +104,14 @@ int main() {
   const int max_size = 5;
   Item item_wood("wood", "block", 64);
   Weapon weapon_sword("sword", 4);
-  
+  Armor armor_helmet("helmet", 15);
+
   Slot slots[max_size];
 
   slots[0].add(&item_wood, 15);
   slots[1].add(&weapon_sword, 1);
+
+  slots[max_size - 2].add(&armor_helmet, 1);
 
   printf("inventory:\n");
   for (int i = 0; i < max_size; i++) {
