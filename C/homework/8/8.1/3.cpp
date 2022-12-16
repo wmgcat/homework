@@ -27,6 +27,7 @@ class Item {
 
 class Weapon : public Item {
   public:
+    Weapon() {}
     Weapon(string _id, int _damage) {
       id = _id;
       type = "weapon";
@@ -40,6 +41,7 @@ class Weapon : public Item {
 
 class Armor : public Item {
   public:
+    Armor() {}
     Armor(string _id, int _armor) {
       id = _id;
       type = "armor";
@@ -57,47 +59,47 @@ class Slot {
       type = "";
       count = 0;
     }
-    void add(Item *_item, int _count) {
+    void add(Item _item, int _count) {
       item = _item; 
       count += _count;
-      type = _item->getType();
+      type = _item.getType();
     }
-    void add(Armor *_item, int _count) {
+    void add(Armor _item, int _count) {
       armor = _item;
       count += _count;
-      type = _item->getType();
+      type = _item.getType();
     }
-    void add(Weapon *_item, int _count) {
+    void add(Weapon _item, int _count) {
       weapon = _item;
       count += _count;
-      type = _item->getType();
+      type = _item.getType();
     }
     string getInfo() {
       string temp = "empty";
       int max = 0;
       if (type == "armor") {
-        temp = armor->getInfo();
-        max = armor->getMax();
+        temp = armor.getInfo();
+        max = armor.getMax();
       } else {
         if (type == "weapon") {
-          temp = weapon->getInfo();
-          max = weapon->getMax();
+          temp = weapon.getInfo();
+          max = weapon.getMax();
         } else {
           if (type != "") {
-            temp = item->getInfo();
-            max = item->getMax();
+            temp = item.getInfo();
+            max = item.getMax();
           }
         }
       }
       temp += "\tcount: " + to_string(count) + "/" + to_string(max);
       return temp;
-    }
+    } 
   private:
     string type;
     int count;
-    Item *item;
-    Weapon *weapon;
-    Armor *armor;
+    Item item;
+    Weapon weapon;
+    Armor armor;
 };
 
 int main() { 
@@ -108,10 +110,10 @@ int main() {
 
   Slot slots[max_size];
 
-  slots[0].add(&item_wood, 15);
-  slots[1].add(&weapon_sword, 1);
+  slots[0].add(item_wood, 15);
+  slots[1].add(weapon_sword, 1);
 
-  slots[max_size - 2].add(&armor_helmet, 1);
+  slots[max_size - 2].add(armor_helmet, 1);
 
   printf("inventory:\n");
   for (int i = 0; i < max_size; i++) {
