@@ -5,23 +5,34 @@
 
 class Function {
   public:
+    Function() {
+      name = "Function";
+    }
     virtual int f(int x) { return x; }
-    virtual std::string getName() { return "Function"; }
+    virtual std::string getName() { return name; }
+  protected:
+    std::string name;
 };
 class Ellipse : public Function {
   public:
     int f(int x) { return DEFAULT_RADIUS - 2 * x*x; }
-    std::string getName() { return "Ellipse"; }
+    Ellipse() {
+      name = "Ellipse";
+    }
 };
 class Hiperbola : public Function {
   public:
     int f(int x) { return 2 / x; }
-    std::string getName() { return "Hiperbola"; }
+    Hiperbola() {
+      name = "Hiperbola";
+    }
 };
 class Parabola : public Function {
   public:
     int f(int x) { return x * x; }
-    std::string getName() { return "Parabola"; }
+    Parabola() {
+      name = "Parabola";
+    }
 };
 
 int main() {
