@@ -3,11 +3,15 @@
 
 using namespace std;
 
+void show_error_by_zero(int x) {
+  if (x == 0) throw overflow_error("divide by zero");
+}
+
 class Fraction {
   public:
     Fraction() {}
     Fraction(int _a, int _b) {
-      if (_b == 0) throw overflow_error("divide by zero");
+      show_error_by_zero(_b);
       a = _a;
       b = _b;
     }
@@ -16,25 +20,25 @@ class Fraction {
     Fraction operator+ (Fraction& other) {
       a = a * other.b + b * other.a;
       b *= other.b;
-      if (b == 0) throw overflow_error("divide by zero");
+      show_error_by_zero(b);
       return *this;
     }
     Fraction operator* (Fraction& other) {
       a *= other.a;
       b *= other.b;
-      if (b == 0) throw overflow_error("divide by zero");
+      show_error_by_zero(b);
       return *this;
     }
     Fraction operator/ (Fraction& other) {
       a *= other.b;
       b *= other.a;
-      if (b == 0) throw overflow_error("divide by zero");
+      show_error_by_zero(b);
       return *this;
     }
     Fraction operator- (Fraction& other) {
       a = a * other.b - b * other.a;
       b *= other.b;
-      if (b == 0) throw overflow_error("divide by zero");
+      show_error_by_zero(b);
       return *this;
     }
 
@@ -42,7 +46,7 @@ class Fraction {
     Fraction& operator -- () {
       if (a - 1 <= 0) {
         b--;
-        if (b == 0) throw overflow_error("divide by zero");
+        show_error_by_zero(b);
         a = b;
       } else --a;
       return *this;
