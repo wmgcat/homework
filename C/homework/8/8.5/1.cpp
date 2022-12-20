@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string>
 #define PI 3.14
-#define MAX 6
+#define MAX 5
 
 
 class Figure {
@@ -10,9 +10,7 @@ class Figure {
     Figure() {
       lable = "Figure";
     }
-    virtual int area() {
-        return 0;
-    }
+    virtual int area() = 0;
 };
 
 class Parallelogram : public Figure {
@@ -83,16 +81,15 @@ class Circle : public Figure {
 
 int main() {
   // input:
-  Figure figure1;
-  Parallelogram figure2(10, 5);
-  Rectangle figure3(12, 4);
-  Square figure4(8);
-  Rhombus figure5(8, 5);
-  Circle figure6(16);
+  Parallelogram figure1(10, 5);
+  Rectangle figure2(12, 4);
+  Square figure3(8);
+  Rhombus figure4(8, 5);
+  Circle figure5(16);
   
   Figure* figures[MAX] = {
     &figure1, &figure2, &figure3,
-    &figure4, &figure5, &figure6
+    &figure4, &figure5
   };
 
   // output:
