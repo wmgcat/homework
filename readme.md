@@ -10,3 +10,5 @@
 6. string
 7. functions
 8. classes
+### projects:
+1. credit calculator
