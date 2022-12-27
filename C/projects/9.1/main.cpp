@@ -5,28 +5,6 @@
 
 float getProcent(float x, float proc) { return x * .01 * proc; }
 
-void getData(float range, float proc) {
-  float pay = (range + getProcent(range, proc)) / time;
-  printf("month\tpay\t\tresult\t\tprocent\n");
-  float proc_sum = 0, pay_sum = 0;
-  for (int i = 0; i < time; i++) {
-    float nproc, npay = pay;
-    if (i != time - 1) {
-      nproc = getProcent((range + getProcent(range, proc)) / time, proc);
-      range -= pay;
-      pay_sum += pay + nproc;
-      proc_sum += nproc;
-    } else {
-      nproc = getProcent((range + getProcent(range, proc)) / time, proc);
-      pay_sum += range + nproc;
-      proc_sum += nproc;
-      npay = range;
-      range -= range;
-    }
-    printf("%i\t%f\t%f\t%f\n", i + 1, npay, range, nproc);
-  }
-  printf("------------------\n\t%f\t\t\t%f\n", pay_sum, proc_sum);
-}
 void getData(float range, float proc, int end) {
   float pay = (range + getProcent(range, proc)) / time;
   printf("month\tpay\t\tresult\t\tprocent\n");
@@ -66,7 +44,7 @@ int main() {
     if (proc < 0 || start < 0 || end < start) throw std::overflow_error("input data is not correct!");    
     float range = end - start;
     if (range > 0) {
-      getData(range, proc);
+      getData(range, proc, time);
       int month;
       printf("finish credit int month(2-%i): ", time);
       scanf("%i", &month);
