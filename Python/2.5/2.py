@@ -8,12 +8,8 @@ def checkChar(word, char):
   return count
 
 def checkArrayChars(word, arr):
-  find = False
   for i in range(len(arr)):
     count = checkChar(word, arr[i])
-    if count <= 0: break
-    find = True
-    print(f'char "{arr[i]}: {str(count)}')
-  return find
+    if count > 0: print(f'char "{arr[i]}: {str(count)}')
 
-print(checkArrayChars(word, ['a', 'e', 'i', 'o', 'u']))
+checkArrayChars(word, ['a', 'e', 'i', 'o', 'u'])
