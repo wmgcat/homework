@@ -1,19 +1,12 @@
-word = input("word: ")
+def checkChars(word):
+  nword = word.replace(' ', '')
+  arr = {}
+  for i in range(len(nword)):
+    if not (nword[i] in arr): arr[nword[i]] = 1
+    else: arr[nword[i]] += 1
+  return arr
 
-def checkChar(word, char):
-  count = 0
-  for i in range(len(word)):
-    if word[i] == char:
-      count = count + 1
-  return count
-
-def checkArrayChars(word, arr):
-  globalCount = len(word.replace(' ', ''))
-  for i in range(len(arr)):
-    count = checkChar(word, arr[i])
-    if count > 0:
-      print(f'char "{arr[i]}: {str(count)}')
-      globalCount -= count
-  print(f'other chars count: {globalCount}')
-
-checkArrayChars(word, ['a', 'e', 'i', 'o', 'u'])
+arr = checkChars(input("word: "))
+print("result:")
+for key in arr:
+  print(f'{key}: {arr[key]}')
