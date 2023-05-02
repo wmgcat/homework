@@ -8,8 +8,12 @@ def checkChar(word, char):
   return count
 
 def checkArrayChars(word, arr):
+  globalCount = len(word.replace(' ', ''))
   for i in range(len(arr)):
     count = checkChar(word, arr[i])
-    if count > 0: print(f'char "{arr[i]}: {str(count)}')
+    if count > 0:
+      print(f'char "{arr[i]}: {str(count)}')
+      globalCount -= count
+  print(f'other chars count: {globalCount}')
 
 checkArrayChars(word, ['a', 'e', 'i', 'o', 'u'])
