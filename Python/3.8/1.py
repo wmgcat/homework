@@ -1,10 +1,16 @@
 N = int(input("N: "))
+
+if N < 1 or N > 10000:
+  print("N < 1 or N > 10000")
+  exit()
+
 Narr = []
+
 
 for i in range(N):
   while True:
     nX = int(input(f'{i + 1} number: '))
-    if nX >= 1 and nX <= 10000:
+    if nX >= 1 and nX <= 10**5:
       Narr.append(nX)
       break
 

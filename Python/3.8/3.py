@@ -16,8 +16,21 @@ for i in range(N):
     exit()
   persons.append(X)
 
-mass, count, result = 0, 0, 0
-for i in range(len(persons)):
+persons.sort() 
+
+
+i, result = 0, 0
+while i < len(persons):
+  if persons[i] < M:
+    if i + 1 < len(persons) and persons[i] + persons[i + 1] <= M:
+      print(f'{result + 1}: elem: [{i}, {i + 1}] {persons[i]}+{persons[i + 1]}={persons[i] + persons[i + 1]}')
+      result += 1
+      i += 2
+    else:
+      print(f'{result + 1}: elem: {i} {persons[i]}')
+      result += 1
+      i += 1
+  """
   if count < MAX and (mass + persons[i]) >= M:
     result += 1
     count = 0
@@ -28,5 +41,6 @@ for i in range(len(persons)):
     result += 1
     count = 0
     mass = 0
+  """
 
 print("Result: ", result)
