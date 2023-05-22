@@ -1,46 +1,29 @@
-M = int(input("M: "))
-if M < 0 or M > 10**6:
-  print("M < 0 or M > 10e6")
+
+m = int(input("mass: "))
+if m < 1 or m > 10**6:
+  print('m < 1 or m > 10e6')
   exit()
 
-MAX = 2
-N, persons = int(input("N: ")), []
-if N < 0 or N > 100:
-  print("N < 0 or N > 100")
+n = int(input("count: "))
+if n < 1 or n > 100:
+  print('n < 1 or n > 100')
   exit()
 
-for i in range(N):
-  X = int(input(f'{i + 1} person M: '))
-  if X < 0 or X > M:
-    print(f'{i + 1} person M < 0 or > {M}')
-    exit()
-  persons.append(X)
+weights = []
 
-persons.sort() 
+for i in range(n):
+  weights.append(int(input(f'{i + 1} weight: ')))
+weights.sort()
 
+boats, left, right = 0, 0, n -1
 
-i, result = 0, 0
-while i < len(persons):
-  if persons[i] < M:
-    if i + 1 < len(persons) and persons[i] + persons[i + 1] <= M:
-      print(f'{result + 1}: elem: [{i}, {i + 1}] {persons[i]}+{persons[i + 1]}={persons[i] + persons[i + 1]}')
-      result += 1
-      i += 2
-    else:
-      print(f'{result + 1}: elem: {i} {persons[i]}')
-      result += 1
-      i += 1
-  """
-  if count < MAX and (mass + persons[i]) >= M:
-    result += 1
-    count = 0
-    mass = 0
-  mass += persons[i]
-  count += 1
-  if count >= MAX or mass >= M:
-    result += 1
-    count = 0
-    mass = 0
-  """
+while left <= right:
+    if left == right:
+        boats += 1
+        break
+    if weights[left] + weights[right] <= m:
+        left += 1
+    right -= 1
+    boats += 1
 
-print("Result: ", result)
+print(f'result: {boats}');

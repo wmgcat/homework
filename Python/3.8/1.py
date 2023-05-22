@@ -10,7 +10,7 @@ Narr = []
 for i in range(N):
   while True:
     nX = int(input(f'{i + 1} number: '))
-    if nX >= 1 and nX <= 10**5:
+    if abs(nX) <= 10**5:
       Narr.append(nX)
       break
 
