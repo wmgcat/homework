@@ -4,5 +4,6 @@ def recursive(list, offset=0):
 	print(list[offset])
 	if offset + 1 < len(list):
 		recursive(list, offset + 1)
+	else: print("END OF MASSIVE!")
 
 recursive(my_list)
