@@ -2,17 +2,17 @@ class Turtle:
     def __init__(self, x, y, s):
         self.x, self.y, self.s = x, y, s
     
-    def go_up(self):
-        self.y += self.s
+    def go_up(self, step=1):
+        self.y += self.s * step
     
-    def go_down(self):
-        self.y -= self.s
+    def go_down(self, step=1):
+        self.y -= self.s * step
     
-    def go_left(self):
-        self.x -= self.s
+    def go_left(self, step=1):
+        self.x -= self.s * step
     
-    def go_right(self):
-        self.x += self.s
+    def go_right(self, step=1):
+        self.x += self.s * step
     
     def evolve(self):
         self.s += 1
