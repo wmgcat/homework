@@ -23,11 +23,10 @@ class Turtle:
         self.s -= 1
     
     def count_moves(self, x2, y2):
-        return int(abs(x2 - self.x) + abs(y2 - self.y))
+        return int(abs(x2 - self.x) + abs(y2 - self.y)) // self.s
 
 turtle = Turtle(0, 0, 1)
 try:
-    turtle.go_right()
     turtle.evolve()
     print(turtle.count_moves(5, 5))
     turtle.degrade()
