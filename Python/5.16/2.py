@@ -23,7 +23,13 @@ class Turtle:
         self.s -= 1
     
     def count_moves(self, x2, y2):
-        return int(abs(x2 - self.x) + abs(y2 - self.y)) // self.s
+        dx, dy = abs(x2 - self.x), abs(y2 - self.y)
+
+        if dx % self.s != 0 or dy % self.s != 0:
+            return None
+        if (dx // self.s + dy // self.s) % 2 != 0:
+            return None
+        return int(dx + dy) // self.s
 
 turtle = Turtle(0, 0, 1)
 try:
